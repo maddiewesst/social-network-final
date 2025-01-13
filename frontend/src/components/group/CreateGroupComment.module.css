@@ -1,0 +1,41 @@
+.inputWrapper {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    position: relative;
+}
+
+.input {
+    width: 90%;
+    border-radius: 30px;
+}
+
+.input::placeholder {
+    padding: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.functions {
+    display: flex;
+    /* justify-content: flex-end; */
+    margin-left: -54px;
+
+    
+
+}
+
+.send {
+    border: none;
+    background: none;
+}
+
+.send:hover {
+    cursor: pointer;
+}
+
+.comment-img-preview {
+    position: absolute;
+    left: 72%;
+}

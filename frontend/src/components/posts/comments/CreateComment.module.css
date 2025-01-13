@@ -1,0 +1,54 @@
+.inputWrapper {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    position: relative;
+}
+
+.input {
+    width: 80%;
+}
+
+.functions {
+    display: flex;
+    margin-left: -25px;
+    gap: 8px;
+    align-items: center;
+    justify-content: center;
+}
+
+.send {
+    border: none;
+    background: none;
+    height: 20px;
+    width: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.send:hover {
+    cursor: pointer;
+}
+
+.comment-img-preview {
+    position: absolute;
+    left: 72%;
+}
+
+textarea {
+    display: flex;
+    align-items: center;
+}
+
+.content{
+    display: flex;
+    width: 89%;
+    padding: 12px;
+    border-radius: 30px;
+ }
+
+ .attach {
+    margin-left: -50px;
+ }
+

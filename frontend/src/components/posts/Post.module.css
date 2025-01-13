@@ -1,0 +1,62 @@
+
+.container {
+    padding: 25px;
+    margin: 20px 0px 20px 0px;
+}
+
+.author {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding-bottom: 10px;
+}
+
+.author a {
+    color: var(--eerie-black);
+    text-decoration: none;
+}
+
+.post-avatar {
+    display: flex;
+    align-items: center;
+    margin-right: 0.5rem;
+}
+
+.row {
+    display: flex ;
+    justify-content: space-between;
+    height: 17px;
+}
+
+.create-at {
+    color: grey;
+    font-size: small;
+}
+
+.details {
+    font-weight: 600;
+}
+
+.content {
+    margin: 10px;
+}
+
+
+.comments {
+    display: flex;
+    justify-content: flex-end;
+    cursor: pointer;
+    padding-bottom: 10px;
+    font-size: 14px;
+    color: grey;
+}
+
+.comments:hover {
+    color: var(--ultra-violet);
+}
+
+.column {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}

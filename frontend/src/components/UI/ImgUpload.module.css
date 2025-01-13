@@ -1,0 +1,20 @@
+.input {
+    display: none;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer; 
+}
+
+.label:hover, .input:hover+.label {
+    /* background-color: var(--seasalt, white);  */
+}

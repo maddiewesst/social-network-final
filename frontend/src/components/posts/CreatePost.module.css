@@ -1,0 +1,90 @@
+.container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.topContainer {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.textareaWrapper {
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.content{
+    /* display: flex;
+
+    width: 100%;
+    padding: 15px;
+    border-radius: 30px; */
+ }
+
+ .content{
+    border-radius: 30px;
+    resize: none;
+    width: 100%;
+    padding: 18px;
+    font-family: sans-serif;
+ }
+
+.avatar {
+    border-radius: 50%;
+    margin-right: 0.5rem;
+}
+
+.details {
+    font-weight: 600;
+    color: var(--eerie-black);
+    text-decoration: none;
+
+}
+
+.select {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-bottom: 8px;
+    margin-right: 8px;
+}
+
+.content-container {
+    display: flex;
+    flex-direction: column;
+}
+
+ .row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+ }
+
+ .bottomContainer {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-top: 18px;
+    margin-left: 5px;
+    margin-right: 5px;
+ }
+
+ .fileInputLabel {
+    cursor: pointer;
+ }
+
+ ::placeholder {
+    font-family: sans-serif;
+ }
+
+.btn {
+    margin-left: 20px;
+}
+
+.attach {
+    height: 30px;
+}
