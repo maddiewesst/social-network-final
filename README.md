@@ -17,8 +17,8 @@ The application includes the following features:
 
 ## Technologies Used
 
-- Frontend: React (JavaScript framework)
-- Backend: Golang (Go programming language)
+- Frontend: React 
+- Backend: Golang 
 - Database: SQLite
 - WebSocket: Gorilla WebSocket package
 - Migration: golang-migrate package
@@ -73,19 +73,3 @@ The project uses SQLC for database interactions and golang-migrate for migration
   ```bash
   migrate -path backend/pkg/db/migrations/sqlite -database sqlite3://path/to/database up
   ```
-
-## Project Structure
-```
-project
-├── backend
-│   ├── pkg
-│   │   ├── db
-│   │   │   ├── migrations
-│   │   │   │   ├── 000001_create_users_table.up.sql
-│   │   │   │   └── ...
-│   │   └── sqlite
-│   └── server.go
-├── frontend
-│   └── src
-└── docker-compose.yml
-```
