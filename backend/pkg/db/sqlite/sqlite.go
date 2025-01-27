@@ -4,18 +4,20 @@ import (
 	"database/sql"
 	"encoding/json"
 	"fmt"
-	"io/ioutil"
+	"io"
 	"log"
 	"net/http"
 	"os"
 	"path/filepath"
+	"runtime"
 
 	// "runtime"
 	"strconv"
 
 	"github.com/golang-migrate/migrate/v4"
 	"github.com/golang-migrate/migrate/v4/database/sqlite" // Correct import
-	_ "github.com/golang-migrate/migrate/v4/source/file"   // File-based migrations
+	_ "github.com/golang-migrate/migrate/v4/database/sqlite3"
+	_ "github.com/golang-migrate/migrate/v4/source/file" // File-based migrations
 	_ "github.com/mattn/go-sqlite3"
 )
 
@@ -48,46 +50,54 @@ type Post struct {
 // run migrations
 
 func RunMigration() *migrate.Migrate {
-	migrationPath := "file://" + filepath.Join("..", "pkg", "db", "migration", "sqlite")
-	dbPath := filepath.Join("..", "pkg", "db", "database.db")
 
-	// if runtime.GOOS == "darwin" {
-	// 	file = "file://../../pkg/db/migration/"
-	// 	dbURL = "sqlite3://../../pkg/db/database.db"
-	// }
+	cwd, err := os.Getwd()
+    if err != nil {
+        log.Fatal(err)
+    }
+	fmt.Println("Current working directory:", cwd)
 
-	// Check if the database file exists
-	if _, err := os.Stat(dbPath); os.IsNotExist(err) {
-		// If it doesn't exist, log that the file will be created
-		log.Println("Database file not found, creating it...")
+
+	migrationPath := "file://" + filepath.Join("pkg", "db", "migration", "sqlite")
+	dbPath := filepath.Join("pkg", "db", "database.db")
+
+	if runtime.GOOS == "darwin" {
+		migrationPath = "file://" + filepath.Join("..", "pkg", "db", "migration", "sqlite")
+		dbPath = filepath.Join("..", "pkg", "db", "database.db")
 	}
 
-		// Open the SQLite database
-		db, err := sql.Open("sqlite3", dbPath)
-		if err != nil {
-			log.Fatalf("Failed to open database: %v", err)
-		}
-		defer db.Close()
-	
-		// Create the database driver instance
-		driver, err := sqlite.WithInstance(db, &sqlite.Config{})
-		if err != nil {
-			log.Fatalf("Failed to create database driver: %v", err)
-		}
-	
-		// Initialize migration
-		m, err := migrate.NewWithDatabaseInstance(migrationPath, "sqlite3", driver)
-		if err != nil {
-			log.Fatalf("Failed to initialize migration: %v", err)
-		}
-	
-		// Apply migrations
-		if err := m.Up(); err != nil && err != migrate.ErrNoChange {
-			log.Fatalf("Migration failed: %v", err)
-		}
-	
-		log.Println("Migration applied successfully.")
-		return m
+	// Check if the database file exists
+	// if _, err := os.Stat(dbPath); os.IsNotExist(err) {
+	// 	// If it doesn't exist, log that the file will be created
+	// 	log.Println("Database file not found, creating it...")
+	// }
+
+	// Open the SQLite database
+	db, err := sql.Open("sqlite3", dbPath)
+	if err != nil {
+		log.Fatalf("Failed to open database: %v", err)
+	}
+	defer db.Close()
+
+	// Create the database driver instance
+	driver, err := sqlite.WithInstance(db, &sqlite.Config{})
+	if err != nil {
+		log.Fatalf("Failed to create database driver: %v", err)
+	}
+
+	// Initialize migration
+	m, err := migrate.NewWithDatabaseInstance(migrationPath, "sqlite3", driver)
+	if err != nil {
+		log.Fatalf("Failed to initialize migration: %v", err)
+	}
+
+	// Apply migrations
+	if err := m.Up(); err != nil && err != migrate.ErrNoChange {
+		log.Fatalf("Migration failed: %v", err)
+	}
+
+	log.Println("Migration applied successfully.")
+	return m
 }
 
 // RemoveMigration rolls back to a specific migration version (e.g., 0 to undo all migrations)
@@ -100,7 +110,11 @@ func RemoveMigration(m *migrate.Migrate, version uint) {
 
 func DbConnect() *sql.DB {
 
-	dbPath := filepath.Join("..", "pkg", "db", "database.db")
+	dbPath := filepath.Join("pkg", "db", "database.db")
+
+	if runtime.GOOS == "darwin" {
+		dbPath = filepath.Join("..", "pkg", "db", "database.db")
+	}
 
 	// Open the SQLite database
 	db, err := sql.Open("sqlite3", dbPath)
@@ -120,7 +134,7 @@ func InsertMockUserData() {
 
 	res, _ = http.Get("https://63f35a0e864fb1d60014de90.mockapi.io/users")
 
-	resData, _ := ioutil.ReadAll(res.Body)
+	resData, _ := io.ReadAll(res.Body)
 
 	// Unmarshall http response
 
@@ -157,7 +171,7 @@ func InsertMockPostData() {
 
 		res, _ = http.Get("https://63f35a0e864fb1d60014de90.mockapi.io/users/" + strconv.Itoa(i) + "/posts")
 
-		resData, _ := ioutil.ReadAll(res.Body)
+		resData, _ := io.ReadAll(res.Body)
 
 		// Unmarshall http response
 

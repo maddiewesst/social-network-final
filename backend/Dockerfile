@@ -2,7 +2,7 @@
 FROM golang:1.23-alpine
 
 # Install GCC and other necessary dependencies
-RUN apk add --no-cache gcc musl-dev
+RUN apk add --update gcc musl-dev
 
 # Set the working directory inside the container
 WORKDIR /app
@@ -10,6 +10,6 @@ COPY go.mod go.sum ./
 RUN go mod download
 COPY . .
 RUN go build -o main ./cmd
-ENV DB_PATH=/app/pkg/db/database.db
+# ENV DB_PATH=/app/pkg/db/database.db
 EXPOSE 8080
 CMD ["./main"]
