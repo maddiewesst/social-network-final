@@ -350,6 +350,7 @@ func Reghandler() http.HandlerFunc {
 					Resp.Success = false
 					errormsg = "ERROR - Something went wrong! Try again"
 					fmt.Println("Unable to create user!")
+					fmt.Println(err)
 				}
 
 				Resp.UserId = int(curUser.ID)
