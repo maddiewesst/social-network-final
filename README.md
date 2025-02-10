@@ -73,3 +73,6 @@ The project uses SQLC for database interactions and golang-migrate for migration
   ```bash
   migrate -path backend/pkg/db/migrations/sqlite -database sqlite3://path/to/database up
   ```
+
+
+![alt text](<Screenshot 2025-02-10 at 12.01.19.png>)

@@ -8,8 +8,6 @@ import UserChatDetailTopBar from "./UserChat/UserChatDetailTopBar";
 import GroupChatDetailTopBar from "./GroupChat/GroupChatDetailTopBar";
 
 const ChatMainArea = ({grpChat}) => {
-    // console.log("user chat followers in chatarea", followersList);
-
     const [privChatboxOpen, setPrivChatboxOpen] = useState(false);
     const [grpChatboxOpen, setGrpChatboxOpen] = useState(false);
     const [followingOrPublicUserId, setfollowingOrPublicUserId] = useState(0);

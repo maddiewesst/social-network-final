@@ -11,7 +11,7 @@ import styles from "./RegForm.module.css";
 
 const RegForm = () => {
     const imageSrc = "../../images/";
-    let defaultImagePath = "default_avatar.jpg";
+    let defaultImagePath = "profile4.svg";
 
     const ctx = useContext(AuthContext);
 
@@ -109,7 +109,7 @@ const RegForm = () => {
     return (
         <div className={styles.container}>
             <h1 className={styles["title"]}>Register</h1>
-            <h2>{regErrMsg}</h2>
+            <p>{regErrMsg}</p>
             <Form className={styles["reg-form"]} onSubmit={submitHandler}>
                 <FormLabel className={styles["reg-label"]} htmlFor="email">Email</FormLabel>
                 <FormInput className={styles["reg-input"]} type="email" name="email" id="email" placeholder="abc@mail.com" value={enteredEmail} onChange={emailChangeHandler} />
@@ -126,12 +126,12 @@ const RegForm = () => {
                     {!uploadedImg && <img src={require("../../images/" + defaultImagePath)} alt="Default Image" className={styles["img-preview"]} width={"250px"} />}
                     {uploadedImg && <img src={uploadedImg} className={styles["img-preview"]} width={"250px"} />}
                 </figure>
-                <ImgUpload className={styles["reg-input"]} name="avatar" id="avatar" accept=".jpg, .jpeg, .png, .gif" text="Upload Image" onChange={avatarHandler} />
-                <FormLabel className={styles["reg-label"]} htmlFor="nname">Nickname (Optional)</FormLabel>
+                {/* <ImgUpload className={styles["reg-input"]} name="avatar" id="avatar" accept=".jpg, .jpeg, .png, .gif" text="Upload Image" onChange={avatarHandler} /> */}
+                <FormLabel className={styles["reg-label"]} htmlFor="nname">Nickname</FormLabel>
                 <input className={styles["reg-input"]} type="text" name="nname" id="nname" placeholder="Pikachu" value={enteredNickname} onChange={nicknameChangeHandler} />
-                <FormLabel className={styles["reg-label"]} htmlFor="about">About Me (Optional)</FormLabel>
+                {/* <FormLabel className={styles["reg-label"]} htmlFor="about">About Me (Optional)</FormLabel> */}
                 {/* <EmojiPicker /> */}
-                <FormTextarea className={styles["reg-input"]} name="about" id="about" placeholder="About me..." rows={5} value={enteredAbout} onChange={aboutChangeHandler} />
+                {/* <FormTextarea className={styles["reg-input"]} name="about" id="about" placeholder="About me..." rows={5} value={enteredAbout} onChange={aboutChangeHandler} /> */}
                 <LgButton className={styles["sub-btn"]} type="submit">Register</LgButton>
                 <p>Already have an account? <Link to="/login">Login</Link></p>
             </Form>

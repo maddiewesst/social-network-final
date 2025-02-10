@@ -6,15 +6,14 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    min-height: 95vh;
 }
 
-
 .title {
-    font-size: 3rem;
+    font-size: 2rem;
     display: flex;
     justify-content: center;
     color: var(--ultra-violet, purple);
-    margin: 5rem 0 0 0;
 }
 
 .login-form {
@@ -25,7 +24,6 @@
 
 .login-input {
     width: 65%;
-    
 }
 
 .sub-btn {

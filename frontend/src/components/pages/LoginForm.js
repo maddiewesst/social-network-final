@@ -46,6 +46,7 @@ const LoginForm = () => {
 
     return (
         <div className={styles.container}>
+            <div className={styles.wrapper}>
             <h1 className={styles["title"]}>Login</h1>
             <h2>{loginErrMsg}</h2>
             <Form className={styles["login-form"]} onSubmit={submitHandler}>
@@ -56,8 +57,8 @@ const LoginForm = () => {
                 <LgButton className={styles["sub-btn"]} type="submit">Login</LgButton>
                 <p>Don't have an account? <Link to={"/reg"}>Register</Link></p>
             </Form>
+            </div>
         </div>
-
     )
 };
 
